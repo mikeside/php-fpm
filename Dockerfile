@@ -22,6 +22,7 @@ RUN mv composer.phar /usr/local/bin/composer
 
 # install php extend
 RUN cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
+
 RUN pecl install igbinary && docker-php-ext-enable igbinary
 RUN apt-get install libzstd-dev -y
 RUN pecl install redis && docker-php-ext-enable redis
@@ -36,7 +37,12 @@ RUN echo "/usr/local/rabbitmq-c" | pecl install amqp \
     && docker-php-ext-enable amqp
 RUN rm -rf v0.11.0.tar.gz  rabbitmq-c-0.11.0
 
-
+RUN if [ $PHP_VERSION -ge 8.0 ]; then \
+    echo y | pecl install swoole; \
+    else \
+    echo y | pecl install http://pecl.php.net/get/swoole-4.8.11.tgz; \
+    fi
+RUN docker-php-ext-enable swoole
 
 
 
