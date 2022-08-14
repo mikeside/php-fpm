@@ -12,13 +12,16 @@ RUN apt-get clean all && apt-get update -y
 
 RUN apt-get install vim -y \
     && apt-get install wget -y \
-    && apt-get install cmake -y
+    && apt-get install cmake -y \
+    && apt-get install git -y \
+    && apt-get install zip -y
 
 # install compser
 RUN php -r "copy('https://install.phpcomposer.com/installer', 'composer-setup.php');"
 RUN php composer-setup.php
 RUN php -r "unlink('composer-setup.php');"
 RUN mv composer.phar /usr/local/bin/composer
+RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/composer
 
 # install php extend
 RUN cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
