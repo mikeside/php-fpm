@@ -1,8 +1,12 @@
 # Mike PHP-FPM Image
 
+## 贡献者
+- Mike
+- mikehub@aliyun.com
 
 ## 介绍
-php-fpm镜像，支持多平台架构，内置了丰富的php常用扩展composer2等 ，免安装开箱即用等
+- php-fpm镜像，支持多平台架构，内置了丰富的php常用扩展composer2等 ，免安装开箱即用等
+- 镜像仓库地址 https://github.com/mikeside/php-fpm
 
 ## 定制软件列表
 ``
