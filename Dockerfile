@@ -41,9 +41,11 @@ RUN echo "/usr/local/rabbitmq-c" | pecl install amqp \
 RUN rm -rf v0.11.0.tar.gz  rabbitmq-c-0.11.0
 
 RUN if [ $PHP_VERSION -ge 8.0 ]; then \
-    echo y | pecl install swoole; \
+      echo y | pecl install swoole; \
+    elif [ $PHP_VERSION -ge 7.2 ]; then \
+      echo y | pecl install http://pecl.php.net/get/swoole-4.8.12.tgz; \
     else \
-    echo y | pecl install http://pecl.php.net/get/swoole-4.8.11.tgz; \
+      echo y | pecl install http://pecl.php.net/get/swoole-4.5.11.tgz; \
     fi
 RUN docker-php-ext-enable swoole
 
